@@ -19,14 +19,15 @@ export default new Vuex.Store({
     articles: [
     ],
     token: null,
-    // isLogin: false,
+    isLogin: false,
+    // username: '',
     topRatedMovies: [],
     trendingMovies: []
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
   },
   mutations: {
     GET_TOP_RATED_MOVIES(state, movies) {
@@ -34,7 +35,7 @@ export default new Vuex.Store({
     },
     GET_TRENDING_MOVIES(state, trendingMovieList) {
       state.trendingMovies = trendingMovieList
-    }
+    },
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
@@ -44,10 +45,16 @@ export default new Vuex.Store({
       state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
+    // setUsername(state, username) {
+    //   state.loginuser = username; // state의 username 값을 설정하는 뮤테이션
+    // },
     LOGOUT(state) {
       state.token = null
       state.isLogin = false
-    }
+    },
+    // setUsername(state, username) {
+    //   state.username = username;
+    // }
   },
   actions: {
     getTopRatedMovies(context) {
@@ -107,14 +114,14 @@ export default new Vuex.Store({
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
         })
-        .catch((err) => {
-        console.log(err)
+        .catch(() => {
+        alert('사용할 수 없는 아이디입니다.')
       })
     },
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-
+      
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
@@ -130,6 +137,9 @@ export default new Vuex.Store({
         // 가능하면 password 지워주기
       })
     },
+    // setUsername({ commit }, username) {
+    //   commit('setUsername', username);
+    // },
   },
   modules: {
   }
