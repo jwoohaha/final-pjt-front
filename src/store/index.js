@@ -19,6 +19,7 @@ export default new Vuex.Store({
     articles: [
     ],
     token: null,
+    // isLogin: false,
     topRatedMovies: [],
     trendingMovies: []
   },
@@ -40,7 +41,12 @@ export default new Vuex.Store({
     // signup & login -> 완료하면 토큰 발급
     SAVE_TOKEN(state, token) {
       state.token = token
+      state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
+    },
+    LOGOUT(state) {
+      state.token = null
+      state.isLogin = false
     }
   },
   actions: {
@@ -80,7 +86,6 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-        // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
         })
         .catch((err) => {
@@ -100,8 +105,6 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          // console.log(res)
-          // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch((err) => {
@@ -122,8 +125,11 @@ export default new Vuex.Store({
         .then((res) => {
         context.commit('SAVE_TOKEN', res.data.key)
         })
-      .catch((err) => console.log(err))
-    }
+      .catch(() => {
+        alert('올바른 아이디와 비밀번호를 입력하세요...')
+        // 가능하면 password 지워주기
+      })
+    },
   },
   modules: {
   }

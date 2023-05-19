@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 // @ is an alias to /src
 import MovieCardList from '@/components/MovieCardList.vue'
 import { mapState } from 'vuex'
