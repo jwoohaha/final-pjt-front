@@ -5,9 +5,10 @@
       <div class="col-12">
         <div class="items d-flex flex-row">
           <MovieCard
-            v-for="(movie, index) in movies"
-            :key="index"
+            v-for="movie in movies"
+            :key="movie.id"
             :name="movie.title"
+            :movie="movie"
             :image-src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
           />
         </div>
@@ -42,12 +43,8 @@
         this.sliding = false
       }
     },
-    computed: {
-      topRatedMovies() {
-        return this.$store.state.topRatedMovies
-      }
-    }
   }
+  
 </script>
 
 <style scoped>

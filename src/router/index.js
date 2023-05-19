@@ -7,6 +7,7 @@ import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
 import HomeView from '@/views/HomeView'
+import MovieDetailView from '@/views/MovieDetailView'
 
 
 Vue.use(VueRouter)
@@ -52,6 +53,11 @@ const routes = [
     path: '/:id',
     name: 'DetailView',
     component: DetailView,
+  },
+  {
+    path: '/movies/:id',
+    name: 'MovieDetailView',
+    component: MovieDetailView,
   },
 
 ]
