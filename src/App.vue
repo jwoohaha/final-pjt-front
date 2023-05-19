@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <nav>
-      <router-link :to="{ name: 'ArticleView' }">Articles</router-link> | 
-      <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link> | 
-      <router-link :to="{ name: 'LogInView' }">LogInPage</router-link>
+      <img src="./assets/logo.png" class="logo" />
+      <router-link :to="{ name: 'HomeView' }">홈</router-link> | 
+      <router-link :to="{ name: 'ArticleView' }">커뮤니티</router-link> | 
+      <span v-show="this.$store.getters.isLogin">
+        <router-link :to="{ name: 'LogOutView' }">로그아웃</router-link>
+      </span>
+      <span v-show="!$store.getters.isLogin">
+        <router-link :to="{ name: 'SignUpView' }">회원가입</router-link> | 
+        <router-link :to="{ name: 'LogInView' }">로그인</router-link>
+      </span>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+
+</script>
 
 <style>
 #app {

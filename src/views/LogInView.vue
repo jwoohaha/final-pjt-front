@@ -30,10 +30,10 @@ export default {
       const payload = {
         username, password
       }
-
+      // localStorage.setItem()
       this.$store.dispatch('login', payload)
 
-    }
+    },
   }
 }
 </script>
