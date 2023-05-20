@@ -8,7 +8,7 @@
       params: { id: article.id }}">
       [DETAIL]
     </router-link>
-    <!-- <p v-if="this.$store.state.loginuser === article.username ">수정</p> -->
+    <!-- <p v-if="'student1' === article.username ">수정</p> -->
     <hr>
   </div>
 </template>
