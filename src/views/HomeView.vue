@@ -3,7 +3,7 @@
     <h1>MovieCardList</h1>
     <br>
     <h1>Trending</h1>
-    <MovieCardList :movies="trendingMovies"/>
+    <MovieCardList :movies="popularMovies"/>
     <br>
     <h1>Top Rated</h1>
     <MovieCardList :movies="topRatedMovies"/>
@@ -23,21 +23,21 @@ export default {
   },
   computed: {
     ...mapState({
+      popularMovies:state => state.popularMovies,
       topRatedMovies:state => state.topRatedMovies,
-      trendingMovies:state => state.trendingMovies
     })
   },
   created() {
+    this.getPopularMovies()
     this.getTopRatedMovies()
-    this.getTrendingMovies()
   },
   methods: {
+    getPopularMovies() {
+      this.$store.dispatch('getPopularMovies')
+    },
     getTopRatedMovies() {
       this.$store.dispatch('getTopRatedMovies')
     },
-    getTrendingMovies() {
-      this.$store.dispatch('getTrendingMovies')
-    }
   }
 }
 </script>

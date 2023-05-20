@@ -1,9 +1,11 @@
 <template>
-  <!-- <RouterLink :to="`/shows/${props.id}`" class="show-item" data-test="show-item">
-  </RouterLink> -->
-  <div class="movie-card">
-    <img :src="imageSrc"/>
-  </div>
+  <router-link :to="{
+    name: 'MovieDetailView',
+    params: { id: movie.id }}">
+    <div class="movie-card">
+      <img :src="imageSrc"/>
+    </div>
+  </router-link>
 </template>
 
 <script>
@@ -24,7 +26,8 @@
       }
     },
     props: {
-      imageSrc: String
+      imageSrc: String,
+      movie: Object
     }
   }
 </script>
