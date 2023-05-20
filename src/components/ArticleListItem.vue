@@ -8,6 +8,7 @@
       params: { id: article.id }}">
       [DETAIL]
     </router-link>
+    <!-- <p v-if="'student1' === article.username ">수정</p> -->
     <hr>
   </div>
 </template>
@@ -17,7 +18,8 @@ export default {
   name: 'ArticleListItem',
   props: {
     article: Object,
-  }
+  },
+
 }
 </script>
 
