@@ -1,14 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
-
 import createPersistedState from 'vuex-persistedstate'
 import router from '../router'
 
-const API_URL = 'http://127.0.0.1:8000'
-const TMDB_API_URL = 'https://api.themoviedb.org/3/trending/movie/week?'
 
+const API_URL = 'http://127.0.0.1:8000'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,7 +19,7 @@ export default new Vuex.Store({
     isLogin: false,
     // username: '',
     topRatedMovies: [],
-    trendingMovies: []
+    popularMovies: []
   },
   getters: {
     isLogin(state) {
@@ -30,11 +27,11 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    GET_TOP_RATED_MOVIES(state, movies) {
-      state.topRatedMovies = movies
+    GET_TOP_RATED_MOVIES(state, topRatedMovieList) {
+      state.topRatedMovies = topRatedMovieList
     },
-    GET_TRENDING_MOVIES(state, trendingMovieList) {
-      state.trendingMovies = trendingMovieList
+    GET_POPULAR_MOVIES(state, popularMovieList) {
+      state.popularMovies = popularMovieList
     },
     GET_ARTICLES(state, articles) {
       state.articles = articles
@@ -70,17 +67,14 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getTrendingMovies(context) {
+    getPopularMovies(context) {
       axios({
         method: 'get',
-        url: TMDB_API_URL,
-        params: {
-        'api_key': process.env.VUE_APP_TMDB_API_KEY
-        }
+        url: `${API_URL}/movies/popular/`,
       })
-      .then((response) => {
-        const trendingMovieList = response.data.results
-        context.commit('GET_TRENDING_MOVIES', trendingMovieList)
+      .then((res) => {
+        const popularMovieList = res.data
+        context.commit('GET_POPULAR_MOVIES', popularMovieList)
       })
       
     },
