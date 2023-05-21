@@ -8,6 +8,8 @@
       <input type="text" id="title" v-model.trim="title"><br>
       <label for="content">내용 : </label>
       <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
+      <label for="rating">평점 : </label>
+      <input type="number">
       <input type="submit" id="submit">
     </form>
   </div>
@@ -29,6 +31,7 @@ export default {
     createArticle() {
       const title = this.title
       const content = this.content
+      const rating = this.rating
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -39,8 +42,8 @@ export default {
       }
       axios({
         method: 'post',
-        url: `${API_URL}/api/v1/articles/`,
-        data: { title, content},
+        url: `${API_URL}/articles/`,
+        data: { title, content, rating},
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }

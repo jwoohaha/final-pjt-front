@@ -69,7 +69,6 @@ export default {
         for (let genre of res.data.genres){
           genres += genre.name + ' '
         }
-        console.log(genres)
         this.movie.genres = genres
       })
       .catch((err) => {
