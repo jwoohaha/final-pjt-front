@@ -4,7 +4,6 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import router from '../router'
 
-
 const API_URL = 'http://127.0.0.1:8000'
 Vue.use(Vuex)
 
@@ -97,16 +96,19 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
+      const nickname = payload.nickname
+      const profile = payload.profile
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
-          username, password1, password2
+          username, password1, password2, nickname, profile
         }
       })
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
+          router.push({name : 'UserDataInput'}) 
         })
         .catch(() => {
         alert('사용할 수 없는 아이디입니다.')
