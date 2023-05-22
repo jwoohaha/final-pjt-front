@@ -1,6 +1,6 @@
 <template>
   <div class="article-list">
-    <h3>Article List</h3>
+    <h3>감상평 목록</h3>
     <ArticleListItem 
     v-for="article in articles" :key="article.id" :article="article"
     />
