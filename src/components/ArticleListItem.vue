@@ -1,8 +1,19 @@
 <template>
   <div>
-    <h5>{{ article.content }}</h5>
     <p>영화: {{ article.movie_title }}</p>
     <p>평점: {{ article.rating }}</p>
+    <div class="star-ratings">
+      <div 
+      class="star-ratings-fill space-x-2 text-lg"
+      :style="{ width: ratingToPercent + '%' }"
+      >
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+    <div class="star-ratings-base space-x-2 text-lg">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+  </div>
+  <h5>{{ article.content }}</h5>
     <p>작성자: {{ article.username }}</p>
     <router-link :to="{
       name: 'DetailView',
@@ -25,6 +36,12 @@ export default {
   name: 'ArticleListItem',
   props: {
     article: Object,
+  },
+  computed: {
+    ratingToPercent() {
+      // 별점 표시를 위한 연산
+      return this.article.rating * 10
+    },
   },
   methods: {
     // updateArticle() {
@@ -67,5 +84,30 @@ export default {
 </script>
 
 <style>
-
+.star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
 </style>

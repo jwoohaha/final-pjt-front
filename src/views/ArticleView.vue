@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>게시글 목록</h1>
-    
+    <h1>감상평 목록</h1>
+    <hr>
     <ArticleList />
-    <router-link :to="{ name: 'CreateView' }">새 게시글 작성</router-link>
+    <router-link :to="{ name: 'CreateView' }">새 감상평 작성</router-link>
     <hr>
   </div>
 </template>

@@ -130,8 +130,11 @@ export default {
     },
     getMovieArticles() {
       axios({
-        method: 'get',
+        method: 'GET',
         url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,
+        headers: {
+          'Authorization': `Token ${this.$store.state.token}`
+        }
       })
       .then((res) => {
         this.articles = res.data
