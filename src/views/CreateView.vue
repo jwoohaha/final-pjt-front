@@ -27,6 +27,11 @@ export default {
       content: null,
     }
   },
+  watch: {
+    title(query) {
+      this.searchMovie(query)
+    }
+  },
   methods: {
     createArticle() {
       const title = this.title
@@ -49,12 +54,25 @@ export default {
           'Authorization': `Token ${this.$store.state.token}`
         }
       })
-      .then((response) => {
-        console.log(response.data);
+      .then((res) => {
+        console.log(res.data);
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       });
+    },
+    searchMovie(query) {
+      let encodedQuery = encodeURIComponent(query)
+      axios({
+        method: 'GET',
+        url: `${API_URL}/movies/${encodedQuery}/`,
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
