@@ -55,7 +55,8 @@
       </div>
       <h3>감상평 목록</h3>
       <ArticleListItem 
-        v-for="article in articles" :key="article.id" :article="article"
+        v-for="article in articles" :key="article.id" :article="article" 
+        @deleteArticle="getMovieArticles"
       />
     </div>
 
@@ -94,9 +95,11 @@ export default {
     },
     flag() {
       // 이미 감상평을 남겼는지 확인
-      for (const article of this.articles) {
-        if (article.username === this.$store.state.username) {
-          return true
+      if (this.articles){
+        for (const article of this.articles) {
+          if (article.username === this.$store.state.username) {
+            return true
+          }
         }
       }
       return false
@@ -126,14 +129,16 @@ export default {
       })
     },
     getMovieArticles() {
-      console.log(this.$route.params.id)
       axios({
         method: 'get',
         url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,
       })
       .then((res) => {
-        console.log(res.data)
         this.articles = res.data
+      })
+      .catch(() => {
+        // 아티클이 없다면 (404)
+        this.articles = []
       })
     },
     createArticle() {
@@ -141,14 +146,11 @@ export default {
       const content = this.content
       const rating = this.rating
 
-      if (!content){
-        alert('내용을 입력해주세요')
-        return
-      } else if (this.flag) {
+      if (this.flag) {
         alert('이미 평을 작성하셨네요!')
         return
       }
-
+      console.log('post')
       axios({
         method: 'post',
         url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,
@@ -163,7 +165,7 @@ export default {
       .catch((err) => {
         console.log(err)
       })
-    }
+    },
   }
 }
 </script>

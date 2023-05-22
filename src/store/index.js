@@ -35,7 +35,6 @@ export default new Vuex.Store({
       state.popularMovies = popularMovieList
     },
     GET_ARTICLES(state, articles) {
-      console.log(articles)
       state.articles = articles
     },
     // signup & login -> 완료하면 토큰 발급
@@ -94,7 +93,6 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          console.log(res)
           context.commit('GET_ARTICLES', res.data)
         })
         .catch((err) => {

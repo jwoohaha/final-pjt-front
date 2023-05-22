@@ -16,7 +16,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/community',
     name: 'ArticleView',
     component: ArticleView
   },
