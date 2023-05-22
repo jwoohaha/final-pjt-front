@@ -37,21 +37,38 @@ export default {
         alert('내용 입력해주세요')
         return
       }
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/articles/`,
-        data: { title, content},
+      console.log(this.$store.state.token)
+      // axios({
+      //   method: 'post',
+      //   url: `${API_URL}/articles/`,
+      //   data: this.$store.state.articles[0],
+      //   headers: {
+      //     Authorization: `Token ${this.$store.state.token}`
+      //   }
+      // })
+      // .then((res) => {
+      //   console.log(res)
+      //   this.$router.push({name: 'ArticleView'})
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+      // let data = this.$store.state.articles[0]
+      let data = {
+        title: this.title,
+        content: this.content
+      };
+      axios.post(`${API_URL}/articles/`, data, {
         headers: {
-          Authorization: `Token ${this.$store.state.token}`
+          'Authorization': `Token ${this.$store.state.token}`
         }
       })
-      .then(() => {
-        // console.log(res)
-        this.$router.push({name: 'ArticleView'})
+      .then((response) => {
+        console.log(response.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   }
 }
