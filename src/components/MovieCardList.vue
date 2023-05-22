@@ -55,7 +55,7 @@
   display: flex;
   overflow-x: auto;
   padding: calc(var(--spacing) * 3) var(--spacing);
-  margin-left: -8px;
+  margin-left: -90px;
 }
 .scroll-hint {
   text-align: right;

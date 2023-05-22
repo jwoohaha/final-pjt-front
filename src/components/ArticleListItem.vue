@@ -21,7 +21,11 @@
       [DETAIL]
     </router-link>
     <p v-if="this.$store.state.username === this.article.username">
-      <!-- <button @click="updateArticle">수정</button> -->
+      <router-link :to="{
+      name: 'UpdateView',
+      params: { id: article.id }}">
+      [Update]
+    </router-link>
       <button @click="deleteArticle">삭제</button>
     </p>
     <hr>
@@ -44,23 +48,9 @@ export default {
     },
   },
   methods: {
-    // updateArticle() {
-    //   const articleId = this.article.id; // 수정할 게시글의 ID
-    //   axios({
-    //     method: 'PUT',
-    //     url: `${API_URL}/articles/${articleId}/`,
-    //     data: { content, rating },
-    //     headers: {
-    //       Authorization: `Token ${this.$store.state.token}`
-    //     }
-    //   })
-    //   .then(() => {
-    //     this.getMovieArticles()
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
+    updateArticle() {
+      this.$router.push({ name: `UpdateView/${this.articleId}`})
+    },
     deleteArticle() {
       const articleId = this.article.id; // 삭제할 게시글의 ID
       axios({

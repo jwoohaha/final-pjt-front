@@ -147,13 +147,12 @@ export default {
     createArticle() {
       // 감상평을 작성
       const content = this.content
-      const rating = this.rating
+      const rating = this.rating * 2
 
       if (this.flag) {
         alert('이미 평을 작성하셨네요!')
         return
       }
-      console.log('post')
       axios({
         method: 'post',
         url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,

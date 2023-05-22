@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ArticleView from '@/views/ArticleView'
 import CreateView from '@/views/CreateView'
+import UpdateView from '@/views/UpdateView'
 import DetailView from '@/views/DetailView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
@@ -25,6 +26,12 @@ const routes = [
     path: '/create',
     name: 'CreateView',
     component: CreateView
+  },
+  
+  {
+    path: '/update/:id',
+    name: 'UpdateView',
+    component: UpdateView
   },
 
   {
