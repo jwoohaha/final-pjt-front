@@ -8,6 +8,8 @@ import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
 import HomeView from '@/views/HomeView'
 import MovieDetailView from '@/views/MovieDetailView'
+import UserDataInput from '@/views/UserDataInput'
+import UserProfileView from '@/views/UserProfileView'
 
 
 Vue.use(VueRouter)
@@ -47,6 +49,18 @@ const routes = [
     path: '/logout',
     name: 'LogOutView',
     component: LogOutView
+  },
+
+  {
+    path: '/userdatainput',
+    name:'UserDataInput',
+    component: UserDataInput
+  },
+
+  {
+    path: '/userprofile',
+    name: 'UserProfileView',
+    component: UserProfileView
   },
 
   {

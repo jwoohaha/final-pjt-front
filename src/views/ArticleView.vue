@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>게시글 목록</h1>
+    
     <ArticleList />
     <router-link :to="{ name: 'CreateView' }">새 게시글 작성</router-link>
     <hr>

@@ -40,21 +40,21 @@ export default {
         alert('내용 입력해주세요')
         return
       }
+
       axios({
         method: 'post',
         url: `${API_URL}/articles/`,
         data: { title, content, rating},
         headers: {
-          Authorization: `Token ${this.$store.state.token}`
+          'Authorization': `Token ${this.$store.state.token}`
         }
       })
-      .then(() => {
-        // console.log(res)
-        this.$router.push({name: 'ArticleView'})
+      .then((response) => {
+        console.log(response.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   }
 }

@@ -35,6 +35,7 @@ export default new Vuex.Store({
       state.popularMovies = popularMovieList
     },
     GET_ARTICLES(state, articles) {
+      console.log(articles)
       state.articles = articles
     },
     // signup & login -> 완료하면 토큰 발급
@@ -87,12 +88,13 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/articles/`,
+        url: `${API_URL}/articles/`,
         headers: {
           Authorization: `Token ${ context.state.token }`
         }
       })
         .then((res) => {
+          console.log(res)
           context.commit('GET_ARTICLES', res.data)
         })
         .catch((err) => {
@@ -136,7 +138,6 @@ export default new Vuex.Store({
         .then((res) => {
         const userInfo = [res.data.key, username, nickname]
         context.commit('SAVE_TOKEN', userInfo)
-        console.log(username)
         })
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')

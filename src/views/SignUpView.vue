@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Sign Up Page</h1>
+    <h1>회원가입 페이지</h1>
     <form @submit.prevent="signUp">
       <label for="username">username : </label>
       <input type="text" id="username" v-model="username"><br>
@@ -9,7 +9,16 @@
       <input type="password" id="password1" v-model="password1"><br>
 
       <label for="password2"> password confirmation : </label>
-      <input type="password" id="password2" v-model="password2">
+      <input type="password" id="password2" v-model="password2"><br>
+
+      <label for="nickname">nickname : </label>
+      <input type="text" id="nickname" v-model="nickname"><br>
+
+      <label for="profile">comments : </label>
+      <textarea id="profile" v-model="profile"></textarea><br>
+
+      <!-- <label for="profile_img">profile picture: </label>
+      <input type="file" id="profile_img" @change="handleFileUpload"><br> -->
       
       <input type="submit" value="SignUp">
     </form>
@@ -24,6 +33,9 @@ export default {
       username: null,
       password1: null,
       password2: null,
+      nickname: null,
+      profile: null,
+      // profile_img: null
     }
   },
   methods: {
@@ -32,9 +44,11 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
+      const nickname = this.nickname
+      const profile = this.profile
 
       const payload = {
-        username, password1, password2
+        username, password1, password2,nickname, profile
       }
 
       this.$store.dispatch('signUp', payload)
