@@ -4,7 +4,6 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import router from '../router'
 
-
 const API_URL = 'http://127.0.0.1:8000'
 Vue.use(Vuex)
 
@@ -16,14 +15,17 @@ export default new Vuex.Store({
     articles: [
     ],
     token: null,
-    // isLogin: false,
+    isLogin: false,
+    // username: '',
     topRatedMovies: [],
-    popularMovies: []
+    popularMovies: [],
+    username: null,
+    nickname: null
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
   },
   mutations: {
     GET_TOP_RATED_MOVIES(state, topRatedMovieList) {
@@ -36,15 +38,26 @@ export default new Vuex.Store({
       state.articles = articles
     },
     // signup & login -> 완료하면 토큰 발급
-    SAVE_TOKEN(state, token) {
-      state.token = token
+    SAVE_TOKEN(state, userInfo) {
+      state.token = userInfo[0]
+      state.username = userInfo[1]
+      state.nickname = userInfo[2]
       state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
+    // setUsername(state, username) {
+    //   state.loginuser = username; // state의 username 값을 설정하는 뮤테이션
+    // },
     LOGOUT(state) {
       state.token = null
       state.isLogin = false
-    }
+      state.username = null
+      state.nickname = null
+    },
+
+    // setUsername(state, username) {
+    //   state.username = username;
+    // }
   },
   actions: {
     getTopRatedMovies(context) {
@@ -74,7 +87,7 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/articles/`,
+        url: `${API_URL}/api/v1/articles/`,
         headers: {
           Authorization: `Token ${ context.state.token }`
         }
@@ -90,25 +103,29 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
+      const nickname = payload.nickname
+      const profile = payload.profile
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
-          username, password1, password2
+          username, password1, password2, nickname, profile
         }
       })
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
+          this.router.push({name : 'UserDataInput'}) 
         })
-        .catch((err) => {
-        console.log(err)
+        .catch(() => {
+        alert('사용할 수 없는 아이디입니다.')
       })
     },
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-
+      const nickname = payload.nickname
+      
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
@@ -117,13 +134,18 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-        context.commit('SAVE_TOKEN', res.data.key)
+        const userInfo = [res.data.key, username, nickname]
+        context.commit('SAVE_TOKEN', userInfo)
+        console.log(username)
         })
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')
         // 가능하면 password 지워주기
       })
     },
+    // setUsername({ commit }, username) {
+    //   commit('setUsername', username);
+    // },
   },
   modules: {
   }
