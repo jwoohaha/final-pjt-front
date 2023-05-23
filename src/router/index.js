@@ -17,6 +17,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'LogOutView',
+    component: LogOutView,
+  },
+
+  {
     path: '/community',
     name: 'ArticleView',
     component: ArticleView

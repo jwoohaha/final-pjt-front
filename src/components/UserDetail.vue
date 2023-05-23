@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div v-if="user" class="mt-15vh text-center">
     <h1>{{ user.nickname }} 님</h1>
     <v-divider class="my-5 user-detail-divider"></v-divider>
@@ -31,4 +31,4 @@ export default {
     }
   },
 };
-</script>
+</script> -->

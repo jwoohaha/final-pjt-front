@@ -130,28 +130,9 @@ export default {
     },
 
 
-    // createArticle() {
-    //   // 감상평을 작성
-    //   const content = null
-    //   const rating = this.rating[this.$route.params.id] * 2
-    //   axios({
-    //     method: 'post',
-    //     url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,
-    //     data: { content, rating },
-    //     headers: {
-    //       Authorization: `Token ${this.$store.state.token}`
-    //     }
-    //   })
-    //   .then(() => {
-    //     this.getMovieArticles()
-    //   })
-    //   .catch(() => {
-    //   })
-    // },
   }
 }
 </script>
 
 <style>
-/* 스타일은 이전과 동일하게 유지 */
 </style>
