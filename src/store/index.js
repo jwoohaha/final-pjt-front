@@ -37,17 +37,19 @@ export default new Vuex.Store({
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
-    SAVE_USERINFO(state, userInfo) {
-      state.username = userInfo.username
-      state.nickname = userInfo.nickname
-    },
+    // SAVE_USERINFO(state, userInfo) {
+    //   state.username = userInfo.username
+    //   state.nickname = userInfo.nickname
+    // },
     // signup & login -> 완료하면 토큰 발급
     SAVE_TOKEN(state, token) {
       state.token = token
       state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
-    
+    LOGIN(state, username){
+      state.username = username
+    },
     LOGOUT(state) {
       state.token = null
       state.isLogin = false
@@ -115,16 +117,17 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
-          this.router.push({name : 'UserDataInput'}) 
+          router.push({name : 'UserDataInput'}) 
         })
         .catch(() => {
-        alert('사용할 수 없는 아이디입니다.')
+        // alert('사용할 수 없는 아이디입니다.')
+        router.push({name : 'UserDataInput'}) 
+        console.log('사용할 수 없는 아이디입니다. ')
       })
     },
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-      const nickname = payload.nickname
       
       axios({
         method: 'post',
@@ -134,18 +137,14 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          const userInfo = {username: username, nickname: nickname}
-          context.commit('SAVE_USERINFO', userInfo)
-          context.commit('SAVE_TOKEN', res.data.key)
+        context.commit('SAVE_TOKEN', res.data.key);
+        context.commit('LOGIN', username);
         })
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')
         // 가능하면 password 지워주기
       })
     },
-    // setUsername({ commit }, username) {
-    //   commit('setUsername', username);
-    // },
   },
   modules: {
   }
