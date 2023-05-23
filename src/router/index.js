@@ -4,6 +4,7 @@ import ArticleView from '@/views/ArticleView'
 import CreateView from '@/views/CreateView'
 import UpdateView from '@/views/UpdateView'
 import DetailView from '@/views/DetailView'
+import SearchView from '@/views/SearchView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
@@ -81,12 +82,18 @@ const routes = [
     name: 'DetailView',
     component: DetailView,
   },
+
   {
     path: '/movies/:id',
     name: 'MovieDetailView',
     component: MovieDetailView,
   },
-
+  
+  {
+    path: '/search/:query',
+    name: 'SearchView',
+    component: SearchView,
+  },
 ]
 
 const router = new VueRouter({
