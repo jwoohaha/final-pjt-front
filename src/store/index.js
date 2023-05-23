@@ -35,20 +35,21 @@ export default new Vuex.Store({
       state.popularMovies = popularMovieList
     },
     GET_ARTICLES(state, articles) {
-      console.log(articles)
       state.articles = articles
     },
+    // SAVE_USERINFO(state, userInfo) {
+    //   state.username = userInfo.username
+    //   state.nickname = userInfo.nickname
+    // },
     // signup & login -> 완료하면 토큰 발급
-    SAVE_TOKEN(state, userInfo) {
-      state.token = userInfo[0]
-      state.username = userInfo[1]
-      state.nickname = userInfo[2]
+    SAVE_TOKEN(state, token) {
+      state.token = token
       state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
-    // setUsername(state, username) {
-    //   state.loginuser = username; // state의 username 값을 설정하는 뮤테이션
-    // },
+    LOGIN(state, username){
+      state.username = username
+    },
     LOGOUT(state) {
       state.token = null
       state.isLogin = false
@@ -94,7 +95,6 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          console.log(res)
           context.commit('GET_ARTICLES', res.data)
         })
         .catch((err) => {
@@ -117,16 +117,17 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
-          this.router.push({name : 'UserDataInput'}) 
+          router.push({name : 'UserDataInput'}) 
         })
         .catch(() => {
-        alert('사용할 수 없는 아이디입니다.')
+        // alert('사용할 수 없는 아이디입니다.')
+        router.push({name : 'UserDataInput'}) 
+        console.log('사용할 수 없는 아이디입니다. ')
       })
     },
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-      const nickname = payload.nickname
       
       axios({
         method: 'post',
@@ -136,17 +137,14 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-        const userInfo = [res.data.key, username, nickname]
-        context.commit('SAVE_TOKEN', userInfo)
+        context.commit('SAVE_TOKEN', res.data.key);
+        context.commit('LOGIN', username);
         })
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')
         // 가능하면 password 지워주기
       })
     },
-    // setUsername({ commit }, username) {
-    //   commit('setUsername', username);
-    // },
   },
   modules: {
   }
