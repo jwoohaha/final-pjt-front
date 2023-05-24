@@ -26,22 +26,22 @@ export default {
   data() {
     return{
       searchResult: null,
+      query: this.$route.params.query,
     }
   },
   created() {
-    this.getSearchData()
+    this.getSearchData(this.query)
   },
   methods: {
-    getSearchData() {
+    getSearchData(query) {
       // query를 제목에 포함하는 영화 정보를 받아오는 api 호출
-      const query = this.$route.params.query
+      // const query = this.$route.params.query
       let encodedQuery = encodeURIComponent(query)
       axios({
         method: 'GET',
         url: `${API_URL}/movies/${encodedQuery}/`,
       })
       .then((res) => {
-        console.log(res.data)
         this.searchResult = res.data
       })
       .catch((error) => {

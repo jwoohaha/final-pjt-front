@@ -4,6 +4,7 @@ import ArticleView from '@/views/ArticleView'
 import CreateView from '@/views/CreateView'
 import UpdateView from '@/views/UpdateView'
 import DetailView from '@/views/DetailView'
+import SearchRefreshView from '@/views/SearchRefreshView'
 import SearchView from '@/views/SearchView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
@@ -89,6 +90,12 @@ const routes = [
     component: MovieDetailView,
   },
   
+  {
+    path: '/search/refresh/:query',
+    name: 'SearchRefreshView',
+    component: SearchRefreshView,
+  },
+
   {
     path: '/search/:query',
     name: 'SearchView',

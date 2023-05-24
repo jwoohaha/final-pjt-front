@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'HomeView' }">홈</router-link> | 
         <router-link :to="{ name: 'ArticleView' }">커뮤니티</router-link> | 
         <input type="text" id="title" v-model.trim="query"
-          @keyup.enter.prevent="search"> | 
+          @keyup.enter.prevent="searchRefresh"> | 
         <p v-if="this.$store.getters.isLogin">
           <router-link :to="{ name: 'UserProfileView' }">사용자 프로필</router-link> | 
           <router-link :to="{ name: 'LogOutView' }">로그아웃</router-link>
@@ -35,8 +35,10 @@ export default {
     }
   },
   methods: {
-    search() {
-      this.$router.push(`/search/${this.query}`)
+    // 동일 페이지 새로고침 문제 해결
+    // navbar -> searchRefresh -> search
+    searchRefresh() {
+      this.$router.push(`/search/refresh/${this.query}`)
     }
   }
 }
