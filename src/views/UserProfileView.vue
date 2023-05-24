@@ -5,7 +5,7 @@
       <p><span class="label">아이디:</span> {{ username }}</p>
       <p><span class="label">닉네임:</span> {{ nickname }}</p>
       <p><span class="label">자기소개:</span> {{ profile }}</p>
-      <img :src="getProfileImagePath" :alt="this.$store.state.username" class="profile-image">
+      <img :src="getProfileImagePath(parseInt(profile_img))" :alt="username" class="profile-image">
     </div>
     <button @click="updateUser" class="update-button">회원정보 수정</button>
   </div>
@@ -21,17 +21,12 @@ export default {
     return {
       username: null,
       nickname: null,
-      profile: null
-    }
-  },
-  computed: {
-    getProfileImagePath() {
-      const selectedImage = this.$store.state.selectedImage
-      if (selectedImage) {
-        return require(`@/assets/${selectedImage.filename}`)
-      } else {
-        return require('@/assets/logo.png')
-      }
+      images: [
+        { id: 1, name: '1.png', filename: '1.png' },
+        { id: 2, name: '2.png', filename: '2.png' },
+      ],
+      profile: null,
+      profile_img: null
     }
   },
   created() {
@@ -41,7 +36,7 @@ export default {
     updateUser() {
       this.$router.push({ name: 'UpdateUserView' });
     },
-    getProfile(){
+    getProfile() {
       axios({
         method: 'get',
         url: `${API_URL}/accounts/test/update/`,
@@ -49,61 +44,24 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((response) => {
-        this.username = response.data.username;
-        this.nickname = response.data.nickname;
-        this.profile = response.data.profile;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          this.username = response.data.username;
+          this.nickname = response.data.nickname;
+          this.profile = response.data.profile;
+          this.profile_img = response.data.profile_img;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getProfileImagePath(imageId) {
+      const image = this.images.find((img) => img.id === imageId);
+      if (image) {
+        return require(`@/assets/${image.filename}`);
+      } else {
+        return require('@/assets/logo.png');
+      }
     }
   }
 }
 </script>
-
-<style>
-.user-profile {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-}
-
-.title {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.profile-info {
-  margin-bottom: 20px;
-}
-
-.profile-image {
-  width: 200px; 
-  height: 200px;
-  object-fit: cover; /* 이미지 비율 유지 */
-  object-position: left; /* 이미지를 왼쪽으로 정렬 */
-}
-
-.label {
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-.update-button {
-  padding: 10px 20px;
-  background-color: #4287f5;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.update-button:hover {
-  background-color: #357ae8;
-}
-
-</style>

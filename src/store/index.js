@@ -148,32 +148,13 @@ export default new Vuex.Store({
       const username = context.state.username
       const nickname = payload.nickname
       const profile = payload.profile
-      console.log('여기는 store', username, nickname)
+      const profile_img = payload.profile_img
+      console.log('여기는 store', username, nickname, profile_img)
       axios({
         method: 'put',
         url: `${API_URL}/accounts/test/update/`,
         data: {
-          username, nickname, profile
-        },
-        headers: {
-          Authorization: `Token ${ context.state.token }`
-        }
-      })
-        .then(() => {
-        router.push({name : 'UserProfileView'})
-        })
-      .catch(() => {
-        router.push({name : 'UserProfileView'})
-      })
-    },
-    updateImg(context, payload){
-      const username = context.state.username
-      const img = payload.img
-      axios({
-        method: 'put',
-        url: `${API_URL}/accounts/test/update/`,
-        data: {
-          username, img
+          username, nickname, profile, profile_img
         },
         headers: {
           Authorization: `Token ${ context.state.token }`
