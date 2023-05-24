@@ -123,12 +123,12 @@ export default new Vuex.Store({
       const password2 = payload.password2
       // const nickname = payload.nickname
       // const profile = payload.profile
-      // console.log('여기는 store', nickname, profile)
+      console.log('여기는 store', username)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
-          username, password1, password2
+          username, password1, password2, 
         }
       })
         .then((res) => {
@@ -158,6 +158,28 @@ export default new Vuex.Store({
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')
         // 가능하면 password 지워주기
+      })
+    },
+    updateUser(context, payload) {
+      const username = context.state.username
+      const nickname = payload.nickname
+      const profile = payload.profile
+      console.log('여기는 store', username, nickname)
+      axios({
+        method: 'put',
+        url: `${API_URL}/accounts/test/update/`,
+        data: {
+          username, nickname, profile
+        },
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
+      })
+        .then(() => {
+        router.push({name : 'UserProfileView'})
+        })
+      .catch(() => {
+        router.push({name : 'UserProfileView'})
       })
     },
   },
