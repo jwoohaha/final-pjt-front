@@ -20,7 +20,8 @@ export default new Vuex.Store({
     topRatedMovies: [],
     popularMovies: [],
     username: null,
-    nickname: null
+    nickname: null,
+    userId: null,
   },
   getters: {
     isLogin(state) {
@@ -50,8 +51,11 @@ export default new Vuex.Store({
       state.isLogin = true
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
-    LOGIN(state, username){
-      state.username = username
+    LOGIN(state, data){
+      state.username = data[0]
+      state.userId = data[1]
+      console.log(state.username)
+      console.log('LOGIN', state.userId)
     },
     LOGOUT(state) {
       state.token = null
@@ -66,9 +70,14 @@ export default new Vuex.Store({
   },
   actions: {
     getRecommendedMovies(context) {
+      const userId = this.state.userId
+      console.log(userId)
       axios({
         method: 'get',
-        url: `${API_URL}/movies/recommend/1/`,
+        url: `${API_URL}/movies/recommend/${userId}/`,
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
       })
         .then((res) => {
         // console.log(res, context)
@@ -143,7 +152,8 @@ export default new Vuex.Store({
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-      
+      let userId = null
+
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
@@ -151,10 +161,21 @@ export default new Vuex.Store({
           username, password
         }
       })
-        .then((res) => {
+      .then((res) => {
         context.commit('SAVE_TOKEN', res.data.key);
-        context.commit('LOGIN', username);
+        axios({
+          method: 'GET',
+          url: `${API_URL}/accounts/test/get_user_id/`,
+          headers: {
+            Authorization: `Token ${ context.state.token }`
+          }
         })
+        .then((res) => {
+          userId = res.data.user_id
+          console.log('userid', userId)
+          context.commit('LOGIN', [username, userId]);
+        })
+      })
       .catch(() => {
         alert('올바른 아이디와 비밀번호를 입력하세요...')
         // 가능하면 password 지워주기
