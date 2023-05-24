@@ -46,6 +46,7 @@ export default {
       const password2 = this.password2
       const nickname = this.nickname
       const profile = this.profile
+      console.log('여기는 가입페이지', nickname)
 
       const payload = {
         username, password1, password2,nickname, profile

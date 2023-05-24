@@ -107,7 +107,7 @@ export default new Vuex.Store({
       const password2 = payload.password2
       const nickname = payload.nickname
       const profile = payload.profile
-
+      console.log('여기는 store', nickname, profile)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -118,11 +118,10 @@ export default new Vuex.Store({
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
           router.push({name : 'UserDataInput'}) 
+          context.commit('LOGIN', username);
         })
         .catch(() => {
-        // alert('사용할 수 없는 아이디입니다.')
-        router.push({name : 'UserDataInput'}) 
-        console.log('사용할 수 없는 아이디입니다. ')
+        alert('사용할 수 없는 아이디입니다.')
       })
     },
     login(context, payload) {
