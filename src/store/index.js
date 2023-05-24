@@ -41,11 +41,6 @@ export default new Vuex.Store({
     GET_ARTICLES(state, articles) {
       state.articles = articles
     },
-    // SAVE_USERINFO(state, userInfo) {
-    //   state.username = userInfo.username
-    //   state.nickname = userInfo.nickname
-    // },
-    // signup & login -> 완료하면 토큰 발급
     SAVE_TOKEN(state, token) {
       state.token = token
       state.isLogin = true
@@ -54,8 +49,6 @@ export default new Vuex.Store({
     LOGIN(state, data){
       state.username = data[0]
       state.userId = data[1]
-      console.log(state.username)
-      console.log('LOGIN', state.userId)
     },
     LOGOUT(state) {
       state.token = null
@@ -63,10 +56,6 @@ export default new Vuex.Store({
       state.username = null
       state.nickname = null
     },
-
-    // setUsername(state, username) {
-    //   state.username = username;
-    // }
   },
   actions: {
     getRecommendedMovies(context) {
@@ -130,9 +119,8 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
-      // const nickname = payload.nickname
-      // const profile = payload.profile
-      console.log('여기는 store', username)
+      let userId = null
+
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -140,14 +128,25 @@ export default new Vuex.Store({
           username, password1, password2, 
         }
       })
-        .then((res) => {
-          context.commit('SAVE_TOKEN', res.data.key)
-          router.push({name : 'UserDataInput'}) 
-          context.commit('LOGIN', username);
+      .then((res) => {
+        context.commit('SAVE_TOKEN', res.data.key)
+        router.push({name : 'UserDataInput'}) 
+        axios({
+          method: 'GET',
+          url: `${API_URL}/accounts/test/get_user_id/`,
+          headers: {
+            Authorization: `Token ${ context.state.token }`
+          }
         })
-        .catch(() => {
-        alert('사용할 수 없는 아이디입니다.')
+        .then((res) => {
+          userId = res.data.user_id
+          console.log('userid', userId)
+          context.commit('LOGIN', [username, userId]);
+        })
       })
+      .catch(() => {
+      alert('사용할 수 없는 아이디입니다.')
+    })
     },
     login(context, payload) {
       const username = payload.username
