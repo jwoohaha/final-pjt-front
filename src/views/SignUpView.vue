@@ -11,12 +11,6 @@
       <label for="password2"> password confirmation : </label>
       <input type="password" id="password2" v-model="password2"><br>
 
-      <label for="nickname">nickname : </label>
-      <input type="text" id="nickname" v-model="nickname"><br>
-
-      <label for="profile">comments : </label>
-      <textarea id="profile" v-model="profile"></textarea><br>
-
       <!-- <label for="profile_img">profile picture: </label>
       <input type="file" id="profile_img" @change="handleFileUpload"><br> -->
       
@@ -33,8 +27,8 @@ export default {
       username: null,
       password1: null,
       password2: null,
-      nickname: null,
-      profile: null,
+      // nickname: null,
+      // profile: null,
       // profile_img: null
     }
   },
@@ -44,12 +38,12 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
-      const nickname = this.nickname
-      const profile = this.profile
-      console.log('여기는 가입페이지', nickname)
+      // const nickname = this.nickname
+      // // const profile = this.profile
+      // console.log('여기는 가입페이지', nickname)
 
       const payload = {
-        username, password1, password2,nickname, profile
+        username, password1, password2
       }
 
       this.$store.dispatch('signUp', payload)
