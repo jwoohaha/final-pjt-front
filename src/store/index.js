@@ -28,6 +28,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    GET_RECOMMENDED_MOVIES(state, recommendedMovieList) {
+      state.recommendedMovies = recommendedMovieList
+    },
     GET_TOP_RATED_MOVIES(state, topRatedMovieList) {
       state.topRatedMovies = topRatedMovieList
     },
@@ -62,6 +65,19 @@ export default new Vuex.Store({
     // }
   },
   actions: {
+    getRecommendedMovies(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/recommend/1/`,
+      })
+        .then((res) => {
+        // console.log(res, context)
+          context.commit('GET_RECOMMENDED_MOVIES', res.data)
+        })
+        .catch((err) => {
+        console.log(err)
+      })
+    },
     getTopRatedMovies(context) {
       axios({
         method: 'get',

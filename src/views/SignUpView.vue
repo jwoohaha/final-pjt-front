@@ -11,9 +11,6 @@
       <label for="password2"> password confirmation : </label>
       <input type="password" id="password2" v-model="password2"><br>
 
-      <!-- <label for="nickname">nickname : </label>
-      <input type="text" id="nickname" v-model="nickname"><br>
-
       <label for="profile">comments : </label>
       <textarea id="profile" v-model="profile"></textarea><br> -->
 
@@ -45,7 +42,6 @@ export default {
       const password1 = this.password1
       const password2 = this.password2
       // const nickname = this.nickname
-      // const profile = this.profile
       // console.log('여기는 가입페이지', nickname)
 
       const payload = {

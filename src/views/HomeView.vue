@@ -2,6 +2,9 @@
   <div class="home">
     <h1>MovieCardList</h1>
     <br>
+    <h1>You Might Like...</h1>
+    <MovieCardList :movies="recommendedMovies"/>
+    <br>
     <h1>Trending</h1>
     <MovieCardList :movies="popularMovies"/>
     <br>
@@ -23,15 +26,20 @@ export default {
   },
   computed: {
     ...mapState({
+      recommendedMovies:state => state.recommendedMovies,
       popularMovies:state => state.popularMovies,
       topRatedMovies:state => state.topRatedMovies,
     })
   },
   created() {
+    this.getRecommendedMovies()
     this.getPopularMovies()
     this.getTopRatedMovies()
   },
   methods: {
+    getRecommendedMovies() {
+      this.$store.dispatch('getRecommendedMovies')
+    },
     getPopularMovies() {
       this.$store.dispatch('getPopularMovies')
     },
