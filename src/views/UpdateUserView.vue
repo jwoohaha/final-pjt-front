@@ -9,11 +9,9 @@
       <label for="profile">comments : </label>
       <textarea id="profile" v-model="profile"></textarea><br>
 
-      <!-- <label for="profile_img">profile picture: </label>
-      <input type="file" id="profile_img" @change="handleFileUpload"><br> -->
-      
       <input type="submit" value="수정하기">
     </form>
+    <button @click="goToSelectImage">프로필 사진 선택하기</button>
   </div>
 </template>
 
@@ -24,7 +22,6 @@ export default {
     return {
       nickname: null,
       profile: null,
-      // profile_img: null
     }
   },
   methods: {
@@ -32,12 +29,17 @@ export default {
       const nickname = this.nickname
       const profile = this.profile
 
+      console.log('프로필 사진 :', profile)
+
       const payload = {
        nickname, profile
       }
       
       this.$store.dispatch('updateUser', payload)
 
+    },
+    goToSelectImage() {
+      this.$router.push({ name: 'SelectImageView' })
     }
   }
 }

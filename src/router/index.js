@@ -14,6 +14,7 @@ import MovieDetailView from '@/views/MovieDetailView'
 import UserDataInput from '@/views/UserDataInput'
 import UserProfileView from '@/views/UserProfileView'
 import UpdateUserView from '@/views/UpdateUserView'
+import SelectImageView from '@/views/SelectImageView'
 
 
 Vue.use(VueRouter)
@@ -83,6 +84,12 @@ const routes = [
     path: '/updateuser',
     name: 'UpdateUserView',
     component: UpdateUserView
+  },
+
+  {
+    path: '/selectimage',
+    name: 'SelectImageView',
+    component: SelectImageView
   },
 
   {

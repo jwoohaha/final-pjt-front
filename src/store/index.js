@@ -20,7 +20,7 @@ export default new Vuex.Store({
     topRatedMovies: [],
     popularMovies: [],
     username: null,
-    nickname: null
+    nickname: null,
   },
   getters: {
     isLogin(state) {
@@ -154,6 +154,26 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/test/update/`,
         data: {
           username, nickname, profile
+        },
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
+      })
+        .then(() => {
+        router.push({name : 'UserProfileView'})
+        })
+      .catch(() => {
+        router.push({name : 'UserProfileView'})
+      })
+    },
+    updateImg(context, payload){
+      const username = context.state.username
+      const img = payload.img
+      axios({
+        method: 'put',
+        url: `${API_URL}/accounts/test/update/`,
+        data: {
+          username, img
         },
         headers: {
           Authorization: `Token ${ context.state.token }`
