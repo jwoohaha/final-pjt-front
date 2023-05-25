@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
     <br>
-    <MovieCarousel :movies="recommendedMovies" :list_title="'개인별 추천 영화'"/>
     <MovieCarousel :movies="popularMovies" :list_title="'인기영화'"/>
+    <MovieCarousel :movies="recommendedMovies" :list_title="'개인별 추천 영화'"/>
     <MovieCarousel :movies="topRatedMovies" :list_title="'평점이 높은 영화'"/>
   </div>
 </template>
@@ -44,3 +43,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home {
+  background-color: rgb(38, 42, 86);
+  color: white; /* 텍스트 색상을 흰색으로 설정 */
+}
+
+
+</style>

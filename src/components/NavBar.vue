@@ -3,19 +3,23 @@
     <nav class="navbar fixed-top">
       <img src="@/assets/logo.png" class="logo" />
       <div class="nav-links">
-        <router-link :to="{ name: 'HomeView' }">홈</router-link> | 
-        <router-link :to="{ name: 'ArticleView' }">커뮤니티</router-link> | 
+        <div class="left-links">
+          <router-link :to="{ name: 'HomeView' }">홈</router-link>
+          <router-link :to="{ name: 'ArticleView' }">커뮤니티</router-link>
 
-        <p v-if="this.$store.getters.isLogin">
-          <router-link :to="{ name: 'UserProfileView', params: {username: this.$store.state.username} }">사용자 프로필</router-link> | 
-          <router-link :to="{ name: 'LogOutView' }">로그아웃</router-link>
-        </p>
-        <p v-else>
-          <router-link :to="{ name: 'SignUpView' }">회원가입</router-link> | 
-          <router-link :to="{ name: 'LogInView' }">로그인</router-link>
-        </p>
-        <input type="text" id="title" v-model.trim="query"
-         @keyup.enter.prevent="searchRefresh"> | 
+          <p v-if="this.$store.getters.isLogin">
+            <router-link :to="{ name: 'UserProfileView', params: {username: this.$store.state.username} }">사용자 프로필</router-link>
+            <router-link :to="{ name: 'LogOutView' }">로그아웃</router-link>
+          </p>
+          <p v-else>
+            <router-link :to="{ name: 'SignUpView' }">회원가입</router-link>
+            <router-link :to="{ name: 'LogInView' }">로그인</router-link>
+          </p>
+        </div>
+        <div class="right-links">
+          <input type="text" id="title" v-model.trim="query" @keyup.enter.prevent="searchRefresh" />
+          <img src="@/assets/close.png" class="close-icon" />
+        </div>
       </div>
     </nav>
 
@@ -26,8 +30,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'NavBar',
   data() {
@@ -43,7 +45,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
@@ -52,8 +53,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f2f2f2;
-  height: 110px
+  background-color: #000000;
+  height: 100px;
 }
 
 .logo {
@@ -67,23 +68,49 @@ export default {
   align-items: center;
 }
 
-.nav-links p {
-  margin: 0;
+.left-links {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
 }
 
-.nav-links a {
-  font-weight: bold;
-  color: #2c3e50;
+.left-links p {
+  margin: 0;
+  margin-right: 20px;
+}
+
+.left-links a {
+  color: #ffffff;
   margin-right: 10px;
   font-size: 30px;
+  font-family: 'Dovemayo_wild';
+  font-weight: normal;
+  font-style: normal;
 }
 
-.nav-links a.router-link-exact-active {
-  color: #42b983;
+.left-links a.router-link-exact-active {
+  color: #B8621B;
+}
+
+.right-links {
+  display: flex;
+  align-items: center;
+}
+
+.right-links input {
+  margin-right: 10px;
+}
+
+.close-icon {
+  height: 60px;
+  width: 60px;
+  margin-left: auto;
+  margin-right: 30px;
+  cursor: pointer;
 }
 
 .main-content {
-  margin-top: 130px; /* navbar의 높이에 따라 조절 */
+  margin-top: 100px;
   padding: 30px;
 }
 </style>
