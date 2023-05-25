@@ -193,10 +193,14 @@ export default {
   position: absolute;
   top: 60%;
   left: 25%;
-  transform: translate(-50%, -50%);
-  width: 30%;
+  transform: translate(-20%, -50%);
+  width: 100%;
   color: white;
   text-align: left;
+}
+
+.backdrop-text > p {
+  width: 30%;
 }
 
 .detail {

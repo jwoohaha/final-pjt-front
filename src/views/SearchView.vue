@@ -1,27 +1,19 @@
 <template lang="">
   <div>
     <p>검색어: {{ $route.params.query }}</p>
-    <div class="items d-flex flex-row">
-      <MovieCard
-        v-for="movie in searchResult"
-        :key="movie.id"
-        :name="movie.title"
-        :movie="movie"
-        :image-src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-      />
-    </div>
+  <MovieCarousel :movies="searchResult" :list_title="'검색 결과'"/>
   </div>
 </template>
 
 <script>
-import MovieCard from '@/components/MovieCard.vue'
+import MovieCarousel from '@/components/MovieCarousel.vue'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'SearchView',
   components: {
-    MovieCard
+    MovieCarousel
   },
   data() {
     return{
