@@ -189,7 +189,7 @@ export default new Vuex.Store({
       console.log('여기는 store', username, nickname, profile_img)
       axios({
         method: 'put',
-        url: `${API_URL}/accounts/test/update/`,
+        url: `${API_URL}/accounts/test/update/${username}/`,
         data: {
           username, nickname, profile, profile_img
         },
@@ -197,11 +197,11 @@ export default new Vuex.Store({
           Authorization: `Token ${ context.state.token }`
         }
       })
-        .then(() => {
-        router.push({name : 'UserProfileView'})
-        })
-      .catch(() => {
-        router.push({name : 'UserProfileView'})
+      .then(() => {
+        router.push({name : 'UserProfileView', params: {username: context.state.username}})
+      })
+      .catch((err) => {
+        console.log(err)
       })
     },
   },

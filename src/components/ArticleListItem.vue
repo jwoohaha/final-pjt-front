@@ -14,10 +14,10 @@
     </div>
   </div>
   <h5>{{ article.content }}</h5>
-    <p>작성자: {{ article.username }}</p>
     <router-link :to="{
-      name: 'DetailView',
-      params: { id: article.id }}">
+      name: 'UserProfileView',
+      params: { username: article.username }}">
+      <p>작성자: {{ article.username }}</p>
       [DETAIL]
     </router-link>
     <p v-if="this.$store.state.username === this.article.username">
