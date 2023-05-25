@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-
     <div class="backdrop">
       <div class="backdrop-img">
         <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" alt="">
@@ -11,13 +10,13 @@
       </div>
     </div>
 
-    <div class="detail">
+    <div class="detail p-5">
       <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`">
-      <div class="content">
-        <h1>{{ movie?.title }}</h1>
-        <p>개봉일: {{ movie?.release_date }}</p>
-        <p>평점: {{ movie?.vote_average }}</p>
-        <div class="star-ratings">
+      <div class="content p-5">
+        <h1 class="m-3">{{ movie?.title }}</h1>
+        <p class="m-3">개봉일: {{ movie?.release_date }}</p>
+        <p class="m-3">평점: {{ movie?.vote_average }}</p>
+        <div class="star-ratings m-3">
           <div 
             class="star-ratings-fill space-x-2 text-lg"
             :style="{ width: ratingToPercent + '%' }"
@@ -28,13 +27,13 @@
             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
           </div>
         </div>
-        <p>장르 : {{ movie?.genres }}</p>
-        <p>{{ movie?.overview }}</p>
+        <p class="m-3">장르 : {{ movie?.genres }}</p>
+        <p class="m-3">{{ movie?.overview }}</p>
       </div>
     </div>
 
-    <div class="article-list">
-      <h3>감상평 남기기</h3>
+    <div class="article-list mt-5 p-3">
+      <h3 class="p-3">감상평 남기기</h3>
       <div class="star-rating space-x-4">
         <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
         <label for="5-stars" class="star pr-4">★</label>
@@ -47,13 +46,13 @@
         <input type="radio" id="1-star" name="rating" value="1" v-model="rating" />
         <label for="1-star" class="star">★</label>
       </div>
-      <div class="article-create">
+      <div class="article-create p-3">
         <form @submit.prevent="createArticle">
           <textarea id="content" cols="100" rows="3" v-model="content"></textarea><br>
-          <input type="submit" id="submit">
+          <button type="submit" class="btn btn-success mt-3">Submit</button>
         </form>
       </div>
-      <h3>감상평 목록</h3>
+      <h3 class="p-3">감상평 목록</h3>
       <ArticleListItem 
         v-for="article in articles" :key="article.id" :article="article" 
         @deleteArticle="getMovieArticles"
@@ -204,13 +203,14 @@ export default {
   text-align: left;
 }
 
-.backdrop-text > p {
+.backdrop-text p {
   width: 30%;
 }
 
 .detail {
   display: flex;
   justify-content: space-between;
+  background-color: rgba(1, 1, 1, 0.4);
 }
 
 .detail img {
@@ -223,6 +223,10 @@ export default {
   padding: 10px;
   text-align: left;
   font-size: 1.5em;
+}
+
+.article-list {
+  background-color: rgba(1, 1, 1, 0.4);
 }
 
 .star-rating {

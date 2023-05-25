@@ -1,24 +1,22 @@
 <template>
   <div class="page">
     <h1>회원가입 페이지</h1>
-    <div class="centered-content">
+    <div>
+      <br><br>
       <form @submit.prevent="signUp" class="signup-form">
-        <div class="form-group">
-          <label for="username">아이디 :</label>
-          <input type="text" id="username" v-model="username">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">#</span>
+          <input type="text" id="username" v-model="username" class="form-control" placeholder="아이디">
         </div>
-
-        <div class="form-group">
-          <label for="password1">비밀번호 :</label>
-          <input type="password" id="password1" v-model="password1">
+        <div class="input-group mt-2 mb-3">
+          <span class="input-group-text" id="basic-addon1">$</span>
+          <input type="password" id="password1" v-model="password1" class="form-control" placeholder="패스워드">
         </div>
-
-        <div class="form-group">
-          <label for="password2">비밀번호 확인 :</label>
-          <input type="password" id="password2" v-model="password2">
+        <div class="input-group mt-2 mb-3">
+          <span class="input-group-text" id="basic-addon1">$</span>
+          <input type="password" id="password2" v-model="password2" class="form-control" placeholder="패스워드 확인">
         </div>
-        
-        <input type="submit" value="SignUp">
+        <button type="submit" class="btn btn-success">회원가입</button>
       </form>
     </div>
     <div class="filler"></div>
@@ -76,15 +74,11 @@ export default {
   justify-content: center;
   align-items: center;
   height: 50%;
+  width: 50%;
 }
 
 .form-group {
   margin-bottom: 30px;
-}
-
-label {
-  display: inline-block;
-  width: 240px;
 }
 
 .filler {

@@ -1,5 +1,5 @@
 <template>
-  <div class="word_color">
+  <div class="word_color p-4">
     <h1>{{ article.movie_title }}</h1>
     <div class="star-ratings">
       <div class="star-ratings-fill space-x-2 text-lg" :style="{ width: ratingToPercent + '%' }">
@@ -9,15 +9,17 @@
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
     </div>
-    <h5>{{ article.content }}</h5><br><br>
+    <br>
+    <h5>{{ article.content }}</h5>
+    <br>
     <div>
       <p>작성자: {{ article.username }}</p>
       <p>작성시간: {{ formatDateTime(article.created_at) }}</p>
       <p>수정시간: {{ formatDateTime(article.updated_at) }}</p>
     </div>  
     <div v-if="this.$store.state.username === this.article.username">
-      <button class="action-button" @click="goToUpdateView">수정</button>
-      <button class="action-button" @click="deleteArticle">삭제</button>
+      <button class="action-button btn btn-success" @click="goToUpdateView">수정</button>
+      <button class="action-button btn btn-danger" @click="deleteArticle">삭제</button>
     </div>
     <hr>
   </div>
