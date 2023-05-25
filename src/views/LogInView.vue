@@ -31,9 +31,6 @@ export default {
         username, password
       }
       this.$store.dispatch('login', payload)
-      // this.$store.dispatch('setUsername', this.username)
-
-      // this.$store.dispatch('setUsername', this.username)
 
     },
   }

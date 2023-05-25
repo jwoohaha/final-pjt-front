@@ -15,7 +15,6 @@ import UserDataInput from '@/views/UserDataInput'
 import UserProfileView from '@/views/UserProfileView'
 import UpdateUserView from '@/views/UpdateUserView'
 
-
 Vue.use(VueRouter)
 
 const routes = [

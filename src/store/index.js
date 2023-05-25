@@ -22,6 +22,7 @@ export default new Vuex.Store({
     username: null,
     nickname: null,
     userId: null,
+
   },
   getters: {
     isLogin(state) {
@@ -185,12 +186,13 @@ export default new Vuex.Store({
       const username = context.state.username
       const nickname = payload.nickname
       const profile = payload.profile
-      console.log('여기는 store', username, nickname)
+      const profile_img = payload.profile_img
+      console.log('여기는 store', username, nickname, profile_img)
       axios({
         method: 'put',
         url: `${API_URL}/accounts/test/update/`,
         data: {
-          username, nickname, profile
+          username, nickname, profile, profile_img
         },
         headers: {
           Authorization: `Token ${ context.state.token }`
