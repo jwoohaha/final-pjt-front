@@ -1,11 +1,13 @@
 <template>
   <div class="user-profile">
     <h1 class="title">사용자 프로필</h1>
-    <div class="profile-info">
-      <p><span class="label">아이디:</span> {{ username }}</p>
-      <p><span class="label">닉네임:</span> {{ nickname }}</p>
-      <p><span class="label">자기소개:</span> {{ profile }}</p>
+    <div class="profile-image-container">
       <img :src="getProfileImagePath(parseInt(profile_img))" :alt="username" class="profile-image">
+    </div>
+    <div class="profile-info">
+      <h1 class="info-item"><span class="label">아이디:</span> {{ username }}</h1>
+      <h1 class="info-item"><span class="label">닉네임:</span> {{ nickname }}</h1>
+      <h1 class="info-item"><span class="label">자기소개:</span> {{ profile }}</h1>
     </div>
     <button @click="updateUser" class="update-button">회원정보 수정</button>
   </div>
@@ -21,12 +23,20 @@ export default {
     return {
       username: null,
       nickname: null,
-      images: [
-        { id: 1, name: '1.png', filename: '1.png' },
-        { id: 2, name: '2.png', filename: '2.png' },
-      ],
+      images: [], // 초기에는 빈 배열로 시작
       profile: null,
       profile_img: null
+    }
+  },
+  mounted() {
+    // 이미지를 동적으로 추가
+    for (let i = 1; i <= 8; i++) {
+      const image = {
+        id: i,
+        name: `${i}.png`,
+        filename: `${i}.png`
+      };
+      this.images.push(image);
     }
   },
   created() {
@@ -65,3 +75,25 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.profile-image-container {
+  float: left; /* 이미지를 왼쪽으로 위치시킴 */
+  margin-right: 20px; /* 이미지와 다른 내용 사이의 간격을 조절 */
+}
+.profile-image {
+  width: 400px; /* 원하는 너비로 설정 */
+  height: 400px; /* 원하는 높이로 설정 */
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item {
+  text-align: left;
+  margin: 10px 0;
+}
+</style>
