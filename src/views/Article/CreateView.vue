@@ -107,6 +107,10 @@ export default {
 </script>
 
 <style>
+h1, label {
+  color: white;
+}
+
 .star-rating {
   display: flex;
   flex-direction: row-reverse;
@@ -117,6 +121,7 @@ export default {
   text-align: center;
   width: 5em;
 }
+
  
 .star-rating input {
   display: none;

@@ -58,9 +58,10 @@ export default {
 }
 
 .logo {
-  height: 80px;
-  width: 160px;
+  height: 100px;
+  width: 200px;
   margin-right: 10px;
+  margin-left: 20px;
 }
 
 .nav-links {
@@ -95,6 +96,7 @@ export default {
 .right-links {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 
 .right-links input {

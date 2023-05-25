@@ -180,6 +180,7 @@ export default {
 .wrapper {
   margin: 10px;
   padding: 20px;
+  color: white; /* 텍스트 색상을 흰색으로 설정 */
 }
 
 .backdrop {

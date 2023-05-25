@@ -92,13 +92,14 @@ export default {
 .image-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* 이미지를 왼쪽에 정렬합니다. */
+  justify-content: space-between;
 }
 
 .image-item {
   margin: 10px;
   cursor: pointer;
   flex-basis: 20%; /* 이미지 아이템의 너비를 20%로 설정하여 한 줄에 5개의 이미지가 보이도록 합니다. */
+  aspect-ratio: 1/1;
 }
 
 .image {

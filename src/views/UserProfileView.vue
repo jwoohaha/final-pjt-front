@@ -120,4 +120,9 @@ export default {
   text-align: left;
   margin: 10px 0;
 }
+
+.user-profile {
+  background-color: rgb(38, 42, 86);
+  color: white; /* 텍스트 색상을 흰색으로 설정 */
+}
 </style>

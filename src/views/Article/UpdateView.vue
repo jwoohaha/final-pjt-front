@@ -1,12 +1,14 @@
 <template lang="">
-  <div>
-    <h1>영화 감상평 수정</h1>
-    <form @submit.prevent="updateArticle">
-      <label for="title">영화 제목 : {{ article.movie_title }}</label>
-      <br>
-
-      <textarea id="content" cols="100" rows="10" v-model="content"></textarea><br>
-      <div class="star-rating space-x-4 mx-auto">
+  <div class="page">
+    <div class="content-wrapper">
+      <h1 class="movie-title">영화 감상평 수정</h1>
+      <form @submit.prevent="updateArticle">
+        <div class="form-group">
+          <label for="title" class="movie-label">영화 제목:</label>
+          <span class="movie-name">{{ article.movie_title }}</span>
+        </div>
+        <textarea id="content" cols="100" rows="10" v-model="content"></textarea>
+        <div class="star-rating space-x-4 mx-auto">
         <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
         <label for="5-stars" class="star pr-4">★</label>
         <input type="radio" id="4-stars" name="rating" value="4" v-model="rating"/>
@@ -21,6 +23,7 @@
       <input type="submit" id="submit">
     </form>
   </div>
+</div>
 </template>
 <script>
 import axios from "axios"
@@ -81,6 +84,47 @@ export default {
   }
 }
 </script>
-<style lang="">
-  
+
+<style>
+.page {
+  background-color: rgb(38, 42, 86);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1.movie-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.movie-label {
+  font-size: 18px;
+}
+
+.movie-name {
+  font-size: 20px;
+  word-break: break-word;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+textarea {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 10px;
+}
 </style>
