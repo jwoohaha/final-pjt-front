@@ -76,7 +76,7 @@ export default {
     getProfile() {
       axios({
         method: 'get',
-        url: `${API_URL}/accounts/test/update/${this.username}/`,
+        url: `${API_URL}/accounts/api/update/${this.username}/`,
 
       })
       .then((response) => {

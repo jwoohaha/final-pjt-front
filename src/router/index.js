@@ -1,26 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ArticleView from '@/views/ArticleView'
-import CreateView from '@/views/CreateView'
-import UpdateView from '@/views/UpdateView'
-import SearchRefreshView from '@/views/SearchRefreshView'
-import SearchView from '@/views/SearchView'
-import SignUpView from '@/views/SignUpView'
-import LogInView from '@/views/LogInView'
-import LogOutView from '@/views/LogOutView'
-import HomeView from '@/views/HomeView'
-import MovieDetailView from '@/views/MovieDetailView'
-import UserDataInput from '@/views/UserDataInput'
-import UserProfileView from '@/views/UserProfileView'
-import UpdateUserView from '@/views/UpdateUserView'
+import HomeView from '@/views/Movie/HomeView'
+import SearchView from '@/views/Movie/SearchView'
+import SearchRefreshView from '@/views/Movie/SearchRefreshView'
+import MovieDetailView from '@/views/Movie/MovieDetailView'
+import ArticleView from '@/views/Article/ArticleView'
+import CreateView from '@/views/Article/CreateView'
+import UpdateView from '@/views/Article/UpdateView'
+import SignUpView from '@/views/Account/SignUpView'
+import LogInView from '@/views/Account/LogInView'
+import LogOutView from '@/views/Account/LogOutView'
+import UserDataInput from '@/views/Account/UserDataInput'
+import UserProfileView from '@/views/Account/UserProfileView'
+import UpdateUserView from '@/views/Account/UpdateUserView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'LogOutView',
-    component: LogOutView,
+    path: '/home',
+    name: 'HomeView',
+    component: HomeView
+  },
+  
+  {
+    path: '/search/:query',
+    name: 'SearchView',
+    component: SearchView,
+  },
+
+  {
+    path: '/search/refresh/:query',
+    name: 'SearchRefreshView',
+    component: SearchRefreshView,
+  },
+  
+  {
+    path: '/movies/:id',
+    name: 'MovieDetailView',
+    component: MovieDetailView,
   },
 
   {
@@ -39,12 +57,6 @@ const routes = [
     path: '/update/:id',
     name: 'UpdateView',
     component: UpdateView
-  },
-
-  {
-    path: '/home',
-    name: 'HomeView',
-    component: HomeView
   },
 
   {
@@ -82,24 +94,6 @@ const routes = [
     name: 'UpdateUserView',
     component: UpdateUserView
   },
-
-  {
-    path: '/movies/:id',
-    name: 'MovieDetailView',
-    component: MovieDetailView,
-  },
-  
-  {
-    path: '/search/refresh/:query',
-    name: 'SearchRefreshView',
-    component: SearchRefreshView,
-  },
-
-  {
-    path: '/search/:query',
-    name: 'SearchView',
-    component: SearchView,
-  },
 ]
 
 const router = new VueRouter({
@@ -107,9 +101,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// router.beforeEach((to, from, next) => {
-//   const isLogin = !!window.$cookies.isKey('auth-token')
-// })
 
 export default router

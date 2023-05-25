@@ -134,7 +134,7 @@ export default new Vuex.Store({
         router.push({name : 'UserDataInput'}) 
         axios({
           method: 'GET',
-          url: `${API_URL}/accounts/test/get_user_id/`,
+          url: `${API_URL}/accounts/api/get_user_id/`,
           headers: {
             Authorization: `Token ${ context.state.token }`
           }
@@ -165,7 +165,7 @@ export default new Vuex.Store({
         context.commit('SAVE_TOKEN', res.data.key);
         axios({
           method: 'GET',
-          url: `${API_URL}/accounts/test/get_user_id/`,
+          url: `${API_URL}/accounts/api/get_user_id/`,
           headers: {
             Authorization: `Token ${ context.state.token }`
           }
@@ -189,7 +189,7 @@ export default new Vuex.Store({
       console.log('여기는 store', username, nickname, profile_img)
       axios({
         method: 'put',
-        url: `${API_URL}/accounts/test/update/${username}/`,
+        url: `${API_URL}/accounts/api/update/${username}/`,
         data: {
           username, nickname, profile, profile_img
         },
