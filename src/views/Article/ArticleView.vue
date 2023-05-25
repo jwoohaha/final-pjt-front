@@ -1,10 +1,13 @@
 <template>
-  <div class="word-color">
-    <h1>영화 감상평 목록</h1>
+  <div class="wrapper">
+    <div class="d-flex justify-content-between">
+        <h1>영화 감상평 목록</h1>
+        <router-link :to="{ name: 'CreateView' }">
+          <button class="btn btn-success">감상평 작성</button>
+        </router-link>
+    </div>
     <hr>
     <ArticleList />
-    <router-link :to="{ name: 'CreateView' }">새 감상평 작성</router-link>
-    <hr>
   </div>
 </template>
 
@@ -38,7 +41,8 @@ export default {
 </script>
 
 <style>
-.word-color{
-  color:white
+.wrapper{
+  color:white;
+  text-align: left
 }
 </style>

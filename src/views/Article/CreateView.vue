@@ -3,32 +3,39 @@
 <template>
   <div>
     <h1>영화 감상평 남기기</h1>
-    <form @submit.prevent="createArticle">
-      <label for="title">영화 제목 : </label>
-      <input type="text" id="title" v-model.trim="title">
-      <br>
-      <div id="search-result">
-        <p 
-          v-for="(movie, idx) in searchResult" :key="idx"
-          @click="selectMovie(movie)"
-        > {{ movie.title }} </p>
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <form @submit.prevent="createArticle">
+          <div class="form-group">
+            <input type="text" id="title" class="form-control" v-model.trim="title" placeholder="영화제목">
+            <br>
+            <div id="search-result">
+              <p 
+                v-for="(movie, idx) in searchResult" :key="idx"
+                @click="selectMovie(movie)"
+                class="text-light"
+              > {{ movie.title }} </p>
+            </div>
+            <textarea class="form-control" id="content" cols="100" rows="10" v-model="content" placeholder="감상평"></textarea><br>
+            <div class="star-rating space-x-4 mx-auto">
+              <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
+              <label for="5-stars" class="star pr-4">★</label>
+              <input type="radio" id="4-stars" name="rating" value="4" v-model="rating"/>
+              <label for="4-stars" class="star">★</label>
+              <input type="radio" id="3-stars" name="rating" value="3" v-model="rating"/>
+              <label for="3-stars" class="star">★</label>
+              <input type="radio" id="2-stars" name="rating" value="2" v-model="rating"/>
+              <label for="2-stars" class="star">★</label>
+              <input type="radio" id="1-star" name="rating" value="1" v-model="rating" />
+              <label for="1-star" class="star">★</label>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            
+          </div>
+        </form>
+  
       </div>
-
-      <textarea id="content" cols="100" rows="10" v-model="content"></textarea><br>
-      <div class="star-rating space-x-4 mx-auto">
-        <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
-        <label for="5-stars" class="star pr-4">★</label>
-        <input type="radio" id="4-stars" name="rating" value="4" v-model="rating"/>
-        <label for="4-stars" class="star">★</label>
-        <input type="radio" id="3-stars" name="rating" value="3" v-model="rating"/>
-        <label for="3-stars" class="star">★</label>
-        <input type="radio" id="2-stars" name="rating" value="2" v-model="rating"/>
-        <label for="2-stars" class="star">★</label>
-        <input type="radio" id="1-star" name="rating" value="1" v-model="rating" />
-        <label for="1-star" class="star">★</label>
-      </div>
-      <input type="submit" id="submit">
-    </form>
+    </div>
   </div>
 </template>
 
@@ -128,7 +135,7 @@ h1, label {
 }
  
 .star-rating label {
-  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-fill-color: rgba(243, 248, 242, 0.9); /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 2.3px;
   -webkit-text-stroke-color: #2b2a29;
   cursor: pointer;

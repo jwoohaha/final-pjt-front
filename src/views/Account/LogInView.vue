@@ -1,21 +1,21 @@
 <template>
   <div class="page">
     <h1>로그인 페이지</h1>
-    <div class="centered-content">
+    <br><br>
+    <div>
       <form @submit.prevent="login" class="login-form">
-        <div class="form-group">
-          <label for="username">아이디 :</label>
-          <input type="text" id="username" v-model="username">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">#</span>
+          <input type="text" id="username" v-model="username" class="form-control" placeholder="아이디">
         </div>
-
-        <div class="form-group">
-          <label for="password">비밀번호 :</label>
-          <input type="password" id="password" v-model="password">
+        <div class="input-group mt-2 mb-3">
+          <span class="input-group-text" id="basic-addon1">$</span>
+          <input type="password" id="password" v-model="password" class="form-control" placeholder="패스워드">
         </div>
-
-        <input type="submit" value="logIn">
+        <button type="submit" class="btn btn-success m-1">로그인</button>
       </form>
     </div>
+    <div class="filler"></div>
   </div>
 </template>
 
@@ -57,13 +57,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.centered-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
 }
 
 .form-group {

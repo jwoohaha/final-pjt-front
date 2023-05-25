@@ -25,6 +25,10 @@ export default {
   background-color: rgb(38, 42, 86);
 }
 
+.main-content {
+  padding: 0px !important;
+}
+
 nav {
   padding: 30px;
 }

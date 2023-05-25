@@ -1,29 +1,32 @@
 <template lang="">
-  <div class="page">
-    <div class="content-wrapper">
-      <h1 class="movie-title">영화 감상평 수정</h1>
-      <form @submit.prevent="updateArticle">
-        <div class="form-group">
-          <label for="title" class="movie-label">영화 제목:</label>
-          <span class="movie-name">{{ article.movie_title }}</span>
-        </div>
-        <textarea id="content" cols="100" rows="10" v-model="content"></textarea>
-        <div class="star-rating space-x-4 mx-auto">
-        <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
-        <label for="5-stars" class="star pr-4">★</label>
-        <input type="radio" id="4-stars" name="rating" value="4" v-model="rating"/>
-        <label for="4-stars" class="star">★</label>
-        <input type="radio" id="3-stars" name="rating" value="3" v-model="rating"/>
-        <label for="3-stars" class="star">★</label>
-        <input type="radio" id="2-stars" name="rating" value="2" v-model="rating"/>
-        <label for="2-stars" class="star">★</label>
-        <input type="radio" id="1-star" name="rating" value="1" v-model="rating" />
-        <label for="1-star" class="star">★</label>
+  <div>
+    <h1 class="mb-3">영화 감상평 수정</h1>
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <form @submit.prevent="updateArticle">
+          <div class="form-group bg- p-3">
+            <h3 class="mb-4 text-success">{{article.movie_title}}</h3>
+            <textarea class="form-control" id="content" cols="100" rows="10" v-model="content" placeholder="감상평"></textarea><br>
+            <div class="star-rating space-x-4 mx-auto">
+              <input type="radio" id="5-stars" name="rating" value="5" v-model="rating"/>
+              <label for="5-stars" class="star pr-4">★</label>
+              <input type="radio" id="4-stars" name="rating" value="4" v-model="rating"/>
+              <label for="4-stars" class="star">★</label>
+              <input type="radio" id="3-stars" name="rating" value="3" v-model="rating"/>
+              <label for="3-stars" class="star">★</label>
+              <input type="radio" id="2-stars" name="rating" value="2" v-model="rating"/>
+              <label for="2-stars" class="star">★</label>
+              <input type="radio" id="1-star" name="rating" value="1" v-model="rating" />
+              <label for="1-star" class="star">★</label>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            
+          </div>
+        </form>
+  
       </div>
-      <input type="submit" id="submit">
-    </form>
+    </div>
   </div>
-</div>
 </template>
 <script>
 import axios from "axios"
@@ -95,36 +98,5 @@ export default {
   justify-content: flex-start;
   height: 100vh;
   padding-top: 50px;
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-h1.movie-title {
-  margin-bottom: 10px;
-  font-size: 24px;
-}
-
-.movie-label {
-  font-size: 18px;
-}
-
-.movie-name {
-  font-size: 20px;
-  word-break: break-word;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-textarea {
-  margin-bottom: 10px;
-}
-
-label {
-  margin-bottom: 10px;
 }
 </style>

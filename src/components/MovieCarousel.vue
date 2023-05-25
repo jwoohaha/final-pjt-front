@@ -1,8 +1,8 @@
 <template>
-  <div class="total-carousel-container">
+  <div class="total-carousel-container mb-4">
     <h1 class="d-flex carousel-explanation ms-5 mb-4">{{list_title}}</h1>
 
-    <carousel :per-page="5" :paginationEnabled="true">
+    <carousel :per-page="4" :paginationEnabled="true">
       <slide v-for="(movie, index) in movies" :key="index">
         <router-link :to="{
           name: 'MovieDetailView',
@@ -38,6 +38,7 @@ export default {
 
 .total-carousel-container {
   padding: 20px;
+  background-color: rgba(1, 1, 1, 0.4);
 }
 
 .carousel-explanation {

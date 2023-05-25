@@ -1,22 +1,20 @@
 <template lang="">
-  <div>
-    <p>검색어: {{ $route.params.query }}</p>
+  <div id="wrapper">
     <div id="search-result">
-      <MovieCarousel :movies="searchMovieResult" :list_title="'영화 검색 결과'"/>
-
-      <div v-for="(user, idx) in searchUserResult" :key="idx">
-        <router-link :to="{ name: 'UserProfileView', params: { username: user.username }}">
+      <MovieCarousel v-if="movies" :movies="searchMovieResult" :list_title="'영화 검색 결과'"/>
+      <div class="d-flex p-5">
+        <div v-for="(user, idx) in searchUserResult" :key="idx" class="px-5">
           <div class="d-flex">
-            <img :src="getProfileImagePath(parseInt(user.profile_img))" style="width: 200px">
-            <div class="p-5">
-              <p>유저이름: {{ user.username }}</p>
-              <p>별명: {{ user.nickname }}</p>
-              <p>소개: {{ user.profile }}</p>
+          <router-link :to="{ name: 'UserProfileView', params: { username: user.username }}"
+            class="no-underline text-white">
+              <img :src="getProfileImagePath(parseInt(user.profile_img))" style="width: 200px">
+              <div class="p-5">
+                <p>{{ user.username }}</p>
+              </div>
+            </router-link>
             </div>
-          </div>
-        </router-link>
+        </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -97,6 +95,12 @@ export default {
   },
 }
 </script>
-<style lang="">
-  
+<style>
+#wrapper {
+  height: 1000px;
+}
+
+.no-underline {
+  text-decoration: none;
+}
 </style>
