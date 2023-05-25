@@ -69,7 +69,7 @@ export default {
       if (image) {
         return require(`@/assets/${image.filename}`);
       } else {
-        return require('@/assets/logo.png');
+        return require('@/assets/base.png');
       }
     }
   }

@@ -11,11 +11,6 @@
       <label for="password2"> password confirmation : </label>
       <input type="password" id="password2" v-model="password2"><br>
 
-      <label for="profile">comments : </label>
-      <textarea id="profile" v-model="profile"></textarea><br> -->
-
-      <!-- <label for="profile_img">profile picture: </label>
-      <input type="file" id="profile_img" @change="handleFileUpload"><br> -->
       
       <input type="submit" value="SignUp">
     </form>
@@ -30,9 +25,6 @@ export default {
       username: null,
       password1: null,
       password2: null,
-      // nickname: null,
-      // profile: null,
-      // profile_img: null
     }
   },
   methods: {
