@@ -24,9 +24,6 @@ export default {
       username: null,
       password1: null,
       password2: null,
-      // nickname: null,
-      // profile: null,
-      // profile_img: null
     }
   },
   methods: {

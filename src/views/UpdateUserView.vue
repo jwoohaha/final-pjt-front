@@ -8,12 +8,12 @@
       <label for="profile">comments:</label>
       <textarea id="profile" v-model="profile"></textarea><br>
 
-      <input type="submit" value="수정하기">
       <div class="image-list">
         <div v-for="image in images" :key="image.id" class="image-item" :class="getImageClass(image.id)">
           <img :src="getImagePath(image.filename)" :alt="image.name" class="image" @click="updateImg(image.id)">
         </div>
       </div>
+      <input type="submit" value="수정하기">
     </form>
   </div>
 </template>
@@ -92,16 +92,18 @@ export default {
 .image-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start; /* 이미지를 왼쪽에 정렬합니다. */
 }
 
 .image-item {
   margin: 10px;
   cursor: pointer;
+  flex-basis: 20%; /* 이미지 아이템의 너비를 20%로 설정하여 한 줄에 5개의 이미지가 보이도록 합니다. */
 }
 
 .image {
-  width: 200px;
-  height: 200px;
+  width: 90%;
+  height: 90%;
   object-fit: cover;
 }
 

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>영화: {{ article.movie_title }}</p>
-    <p>평점: {{ article.rating }}</p>
+    <h1>영화: {{ article.movie_title }}</h1>
     <div class="star-ratings">
       <div 
       class="star-ratings-fill space-x-2 text-lg"
@@ -14,12 +13,9 @@
     </div>
   </div>
   <h5>{{ article.content }}</h5>
-    <router-link :to="{
-      name: 'UserProfileView',
-      params: { username: article.username }}">
-      <p>작성자: {{ article.username }}</p>
-      [DETAIL]
-    </router-link>
+    <p>작성자: {{ article.username }}</p>
+    <p>작성시간 : {{ formatDateTime(article.created_at) }}</p>
+    <p>수정시간 : {{ formatDateTime(article.updated_at) }}</p>
     <p v-if="this.$store.state.username === this.article.username">
       <router-link :to="{
       name: 'UpdateView',
@@ -34,6 +30,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
@@ -68,6 +65,9 @@ export default {
         console.log(error)
         alert('게시글 삭제 중에 오류가 발생했습니다.');
       });
+    },
+    formatDateTime(dateTime) {
+      return moment(dateTime).format('YYYY-MM-DD HH:mm:ss')
     }
   }
 }

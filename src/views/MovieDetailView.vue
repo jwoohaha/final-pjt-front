@@ -153,6 +153,10 @@ export default {
         alert('이미 평을 작성하셨네요!')
         return
       }
+      if (!this.$store.state.isLogin){
+        alert('비회원은 작성할 수 없습니다. 로그인 해주세요!')
+        this.$router.push({ name: 'LogInView' })
+      }
       axios({
         method: 'post',
         url: `${API_URL}/articles/movie_articles/${ this.$route.params.id }/`,
