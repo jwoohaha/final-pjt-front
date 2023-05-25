@@ -13,7 +13,6 @@
       <button v-if="this.$store.state.username===username" @click="updateUser" class="update-button">회원정보 수정</button>
       <button v-if="this.$store.state.username!=username" @click="mixedRecommend" class="recommend-button">영화 추천</button>
     </div>
-
     <div>
       <MovieCarousel :movies="recommendedMovies" :list_title="'추천 영화'"/>
     </div>
