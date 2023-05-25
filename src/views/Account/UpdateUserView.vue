@@ -73,7 +73,7 @@ export default {
       console.log(this.$store.state.username)
       axios({
         method: 'GET',
-        url: `${API_URL}/accounts/test/update/${this.$store.state.username}`,
+        url: `${API_URL}/accounts/api/update/${this.$store.state.username}`,
       })
       .then((res) => {
         console.log(res.data)

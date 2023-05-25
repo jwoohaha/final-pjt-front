@@ -75,7 +75,7 @@ export default {
       let encodedQuery = encodeURIComponent(query)
       axios({
         method: 'GET',
-        url: `${API_URL}/accounts/test/${encodedQuery}/`,
+        url: `${API_URL}/accounts/api/${encodedQuery}/`,
       })
       .then((res) => {
         console.log(res.data)
