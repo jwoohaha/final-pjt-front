@@ -2,28 +2,21 @@
   <div>
     <h1>영화: {{ article.movie_title }}</h1>
     <div class="star-ratings">
-      <div 
-      class="star-ratings-fill space-x-2 text-lg"
-      :style="{ width: ratingToPercent + '%' }"
-      >
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      <div class="star-ratings-fill space-x-2 text-lg" :style="{ width: ratingToPercent + '%' }">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <div class="star-ratings-base space-x-2 text-lg">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
     </div>
-    <div class="star-ratings-base space-x-2 text-lg">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-    </div>
-  </div>
-  <h5>{{ article.content }}</h5>
+    <h5>{{ article.content }}</h5>
     <p>작성자: {{ article.username }}</p>
-    <p>작성시간 : {{ formatDateTime(article.created_at) }}</p>
-    <p>수정시간 : {{ formatDateTime(article.updated_at) }}</p>
-    <p v-if="this.$store.state.username === this.article.username">
-      <router-link :to="{
-      name: 'UpdateView',
-      params: { id: article.id }}">
-      [Update]
-    </router-link>
-      <button @click="deleteArticle">삭제</button>
-    </p>
+    <p>작성시간: {{ formatDateTime(article.created_at) }}</p>
+    <p>수정시간: {{ formatDateTime(article.updated_at) }}</p>
+    <div v-if="this.$store.state.username === this.article.username">
+      <button class="action-button" @click="goToUpdateView">수정</button>
+      <button class="action-button" @click="deleteArticle">삭제</button>
+    </div>
     <hr>
   </div>
 </template>
@@ -45,8 +38,8 @@ export default {
     },
   },
   methods: {
-    updateArticle() {
-      this.$router.push({ name: `UpdateView/${this.articleId}`})
+    goToUpdateView() {
+      this.$router.push({ name: 'UpdateView', params: { id: this.article.id }})
     },
     deleteArticle() {
       const articleId = this.article.id; // 삭제할 게시글의 ID
@@ -99,5 +92,9 @@ export default {
 .star-ratings-base {
   z-index: 0;
   padding: 0;
+}
+
+.action-button {
+  margin-right: 10px;
 }
 </style>
