@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>감상평 목록</h1>
+    <h1>영화 감상평 목록</h1>
     <hr>
     <ArticleList />
     <router-link :to="{ name: 'CreateView' }">새 감상평 작성</router-link>
