@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>영화: {{ article.movie_title }}</h1>
+  <div class="word_color">
+    <h1>{{ article.movie_title }}</h1>
     <div class="star-ratings">
       <div class="star-ratings-fill space-x-2 text-lg" :style="{ width: ratingToPercent + '%' }">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -9,10 +9,12 @@
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
     </div>
-    <h5>{{ article.content }}</h5>
-    <p>작성자: {{ article.username }}</p>
-    <p>작성시간: {{ formatDateTime(article.created_at) }}</p>
-    <p>수정시간: {{ formatDateTime(article.updated_at) }}</p>
+    <h5>{{ article.content }}</h5><br><br>
+    <div>
+      <p>작성자: {{ article.username }}</p>
+      <p>작성시간: {{ formatDateTime(article.created_at) }}</p>
+      <p>수정시간: {{ formatDateTime(article.updated_at) }}</p>
+    </div>  
     <div v-if="this.$store.state.username === this.article.username">
       <button class="action-button" @click="goToUpdateView">수정</button>
       <button class="action-button" @click="deleteArticle">삭제</button>
@@ -68,7 +70,7 @@ export default {
 
 <style>
 .star-ratings {
-  color: #aaa9a9; 
+  color: #ffffff; 
   position: relative;
   unicode-bidi: bidi-override;
   width: max-content;
@@ -96,5 +98,9 @@ export default {
 
 .action-button {
   margin-right: 10px;
+}
+
+.word_color{
+  color:#ffffff;
 }
 </style>

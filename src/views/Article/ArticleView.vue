@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="word-color">
     <h1>영화 감상평 목록</h1>
     <hr>
     <ArticleList />
@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style>
-
+.word-color{
+  color:white
+}
 </style>
