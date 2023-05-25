@@ -7,7 +7,7 @@
         <router-link :to="{ name: 'ArticleView' }">커뮤니티</router-link> | 
 
         <p v-if="this.$store.getters.isLogin">
-          <router-link :to="{ name: 'UserProfileView' }">사용자 프로필</router-link> | 
+          <router-link :to="{ name: 'UserProfileView', params: {username: this.$store.state.username} }">사용자 프로필</router-link> | 
           <router-link :to="{ name: 'LogOutView' }">로그아웃</router-link>
         </p>
         <p v-else>

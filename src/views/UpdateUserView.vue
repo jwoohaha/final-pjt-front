@@ -70,12 +70,10 @@ export default {
       return this.selectedImageId === imageId ? 'selected' : '';
     },
     getUserDetail() {
+      console.log(this.$store.state.username)
       axios({
         method: 'GET',
-        url: `${API_URL}/accounts/test/update/`,
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        }
+        url: `${API_URL}/accounts/test/update/${this.$store.state.username}`,
       })
       .then((res) => {
         console.log(res.data)
